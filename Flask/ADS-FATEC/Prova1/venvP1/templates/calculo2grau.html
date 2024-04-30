@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-4">
+<h1>Calcular Equação do Segundo Grau</h1>
+<form action="/calc_2grau" method="post">
+<div class="form-group">
+<label for="a">Valor de a:</label>
+<input type="number" class="form-control" id="a" name="a" required>
+</div>
+<div class="form-group">
+<label for="b">Valor de b:</label>
+<input type="number" class="form-control" id="b" name="b" required>
+</div>
+<div class="form-group">
+<label for="c">Valor de c:</label>
+<input type="number" class="form-control" id="c" name="c" required>
+</div>
+<button type="submit" class="btn btn-primary">Calcular</button>
+</form>
+</div>
+
+{% block content2 %}
+{% endblock %}
+
+{% endblock %}
+</body>
+</html>

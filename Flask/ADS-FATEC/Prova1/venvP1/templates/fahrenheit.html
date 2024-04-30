@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+<h1>Converter Celsius para Fahrenheit</h1>
+<form action="/calc_fahrenheit" method="get">
+<div class="form-group">
+<label for="celsius">Temperatura em Celsius:</label>
+<input type="number" class="form-control" id="celsius" name="celsius" required>
+</div>
+<button type="submit" class="btn btn-primary">Converter</button>
+</form>
+</div>
+{% block content3 %}
+{% endblock %}
+
+{% endblock %}
+</body>
+</html>

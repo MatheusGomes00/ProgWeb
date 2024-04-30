@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cadastro de Usuario</h1>
+    <form action="/cadastrar_usuario" method="post">
+        <label>Nome</label>
+        <input type="text" name="txt_nome"><br>
+        <label>CPF</label>
+        <input type="text" name="txt_cpf"><br>
+        <label>E-MAIL</label>
+        <input type="text" name="txt_email"><br>
+        <label>Senha</label>
+        <input type="text" name="txt_senha"><br>
+        <input type="submit" name="sub_salvar">
+    </form>
+    <table class="table" action="/caduser" method="get">
+        <tr>
+            <th>nome</th>
+            <th>cpf</th>
+            <th>email</th>
+        </tr>
+        {% for user in usuarios %}
+            <tr>
+                <td>{{user[0]}}</td>
+                <td>{{user[1]}}</td>
+                <td>{% if user[2] is not none %}
+                        {{user[2]}}
+                    {% else %}
+                        Vazio
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+</body>
+</html>
