@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "index.html" %}
+
+{% block content %}
     <h1>Cadastro de Usuario</h1>
-    <form action="/cadastrar_usuario" method="post">
-        <label>Nome</label>
-        <input type="text" name="txt_nome"><br>
-        <label>CPF</label>
-        <input type="text" name="txt_cpf"><br>
-        <label>E-MAIL</label>
-        <input type="text" name="txt_email"><br>
-        <label>Senha</label>
-        <input type="text" name="txt_senha"><br>
-        <input type="submit" name="sub_salvar">
+    <form id="form_cadastro" action="/cadastrar_usuario" method="post">
+        <div class="form-group" style="margin: 10px;">
+            <label class="form-label">Nome</label>
+            <input class='form-control' placeholder="Digite o nome" type="text" name="txt_nome"><br>
+            <label class="form-label">CPF</label>
+            <input class='form-control' placeholder="Digite o CPF" type="text" name="txt_cpf"><br>
+            <label class="form-label">E-MAIL</label>
+            <input class='form-control' placeholder="Digite o E-MAIL" type="email" name="txt_email"><br>
+            <label class="form-label">Senha</label>
+            <input class='form-control' placeholder="Digite o senha" type="password" name="txt_senha"><br>
+            <br>
+            <input id="btn_salvar" class="btn btn-primary" type="submit" name="sub_salvar" value="Salvar">
+            <a class="btn btn-primary" href="/list_user">Listar</a>
+        </div>
     </form>
-    <table class="table" action="/caduser" method="get">
-        <tr>
-            <th>nome</th>
-            <th>cpf</th>
-            <th>email</th>
-        </tr>
-        {% for user in usuarios %}
-            <tr>
-                <td>{{user[0]}}</td>
-                <td>{{user[1]}}</td>
-                <td>{% if user[2] is not none %}
-                        {{user[2]}}
-                    {% else %}
-                        Vazio
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-    </table>
-</body>
-</html>
+    <script>
+        document.getElementById("form_cadastro").addEventListener("submit", function(event){
+            event.preventDefault();
+            var confirmacao = confirm("Deseja cadastrar os dados inseridos?");
+            if(confirmacao){
+                this.submit();
+                alert("Usuário cadastrado com sucesso.")
+            }
+        });
+    </script>
+{% endblock %}
