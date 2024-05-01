@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1>Alterar Usuario</h1>
+    {% if opcao == 'alterar' %}
+        {% for user in usuarios %}
+            <form class='form-control' action="/atualizar_cad" method="POST">
+                <div class="form-group" style="margin: 10px;">
+                    <input type="hidden" name="id_do_usuario" value="{{user[3]}}">
+                    <label class="form-label">Nome</label>
+                    <input class='form-control' placeholder="Digite o nome" type="text" name="txt_nome" value={{user[0]}}><br>
+                    <label class="form-label">CPF</label>
+                    <input class='form-control' placeholder="Digite o CPF" type="text" name="txt_cpf" value={{user[1]}}><br>
+                    <label class="form-label">E-MAIL</label>
+                    <input class='form-control' placeholder="Digite o E-MAIL" type="email" name="txt_email" value={{user[2]}}><br>
+                    <label class="form-label">Senha</label>
+                    <input class='form-control' placeholder="Digite o senha" type="password" name="txt_senha"><br>
+                    <br>
+                    <input class="btn btn-primary" type="submit" name= "sub-salvar" value="Salvar">
+                </div>
+                <!-- <a class="btn btn-primary" href="/listuser">Listar</a> -->
+            </form>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
