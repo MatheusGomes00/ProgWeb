@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+<!-- action="/listuser" method="post" -->
+{% block content %}
+<table class="table" action="/list_user" method="post">
+    <tr>
+        <th>nome</th>
+        <th>cpf</th>
+        <th>email</th>
+        <th>excluir</th>
+        <th>alterar</th>
+    </tr>
+    <!-- {% block content2 %}
+    {% endblock %} -->
+    {% for user in usuarios: %}
+        <tr>
+            <td>{{user[0] }}</td>
+            <td>{{user[1] }}</td>
+            <td>{% if user[2] is not none %}
+                    {{user[2]}}
+                {% else %}    
+                    Vazio
+                {% endif %}
+            </td>
+            <td>
+
+            </td>
+            <td>
+                <a href= {{ url_for("alterar_usuario", user=user[3]) }}>alterar</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
