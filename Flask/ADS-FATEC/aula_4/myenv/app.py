@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 import mysql.connector
 
 
@@ -72,9 +72,20 @@ def atualizar_cadastro():
         query = "UPDATE gomes_tbusuario SET nome=%s, CPF=%s, email=%s, senha=%s WHERE id=%s"
         values = (novo_nome, novo_cpf, novo_email, nova_senha, id_do_usuario)
         mycursor.execute(query, values)
-        db.commit()
+        db.commit()  # ou utilizar o rollback para fechar a transação
         return 'Cadastro atualizado com sucesso'
     else:
         return 'Erro de conexão com o banco de dados'
+
+@app.route('/excluir_usuario/<user>')
+def excluir_usuario(user):
+    db = conexao_com_db()
+    if db:
+        mycursor = db.cursor()
+        query = "DELETE FROM gomes_tbusuario WHERE id = " + user
+        mycursor.execute(query)
+        db.commit()
+        return redirect('/list_user')
+
 
 app.run()
